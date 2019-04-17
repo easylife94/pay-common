@@ -4,7 +4,7 @@ package com.pay.common.core.service.impl;
 import com.pay.common.client.constants.ZookeeperCommonNamespace;
 import com.pay.common.client.exception.PayException;
 import com.pay.common.core.service.IIdService;
-import com.pay.common.core.service.utils.SnowflakeIdWorker;
+import com.pay.common.core.utils.SnowflakeIdWorker;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.curator.framework.CuratorFramework;

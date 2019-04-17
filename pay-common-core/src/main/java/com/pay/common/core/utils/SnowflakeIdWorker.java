@@ -1,4 +1,4 @@
-package com.pay.common.core.service.utils;
+package com.pay.common.core.utils;
 
 /**
  * Twitter_Snowflake<br>
