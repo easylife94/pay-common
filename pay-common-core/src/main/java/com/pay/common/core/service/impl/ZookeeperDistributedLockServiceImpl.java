@@ -23,7 +23,7 @@ public class ZookeeperDistributedLockServiceImpl implements IDistributedLockServ
     private final ConcurrentHashMap<String, InterProcessMutex> locks;
     private final String lockPath;
 
-    public ZookeeperDistributedLockServiceImpl(CuratorFrameworkFactory.Builder curatorFrameworkBuilder,String lockPath) {
+    public ZookeeperDistributedLockServiceImpl(CuratorFrameworkFactory.Builder curatorFrameworkBuilder, String lockPath) {
         this.curatorFrameworkBuilder = curatorFrameworkBuilder;
         this.locks = new ConcurrentHashMap<>();
         this.lockPath = lockPath;
@@ -76,11 +76,13 @@ public class ZookeeperDistributedLockServiceImpl implements IDistributedLockServ
     public void unlock(String key) {
         try {
             String fullPath = lockPath + "/" + key;
-            InterProcessMutex interProcessMutex = locks.get(fullPath);
-            if (!interProcessMutex.isAcquiredInThisProcess()) {
-                locks.remove(fullPath, interProcessMutex);
-            } else {
-                interProcessMutex.release();
+            if (locks.containsKey(fullPath)) {
+                InterProcessMutex interProcessMutex = locks.get(fullPath);
+                if (!interProcessMutex.isAcquiredInThisProcess()) {
+                    locks.remove(fullPath, interProcessMutex);
+                } else {
+                    interProcessMutex.release();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
