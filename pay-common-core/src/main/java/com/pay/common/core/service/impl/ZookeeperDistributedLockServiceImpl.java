@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 基于zookeeper的分布式锁服务实现
+ * 依赖curator framework
  *
  * @author chenwei
  * @date 2019/4/9 15:37
