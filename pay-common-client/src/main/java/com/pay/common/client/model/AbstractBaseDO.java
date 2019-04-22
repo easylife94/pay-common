@@ -33,4 +33,14 @@ public abstract class AbstractBaseDO {
      */
     private Boolean isDeleted;
 
+    public AbstractBaseDO(Long id) {
+        Date now = new Date();
+        this.id = id;
+        this.gmtCreate = now;
+        this.gmtUpdate = now;
+        this.isDeleted = false;
+    }
+
+    public AbstractBaseDO() {
+    }
 }
