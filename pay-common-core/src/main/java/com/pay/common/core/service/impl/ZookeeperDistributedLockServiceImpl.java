@@ -81,6 +81,9 @@ public class ZookeeperDistributedLockServiceImpl implements IDistributedLockServ
                 InterProcessMutex interProcessMutex = locks.get(fullPath);
                 if (!interProcessMutex.isAcquiredInThisProcess()) {
                     locks.remove(fullPath, interProcessMutex);
+                    CuratorFramework client = curatorFrameworkBuilder.build();
+                    client.start();
+                    client.delete().forPath(fullPath);
                 } else {
                     interProcessMutex.release();
                 }
