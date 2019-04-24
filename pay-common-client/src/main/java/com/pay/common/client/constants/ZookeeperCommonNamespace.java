@@ -14,9 +14,7 @@ public class ZookeeperCommonNamespace {
     public static final String LOCKS = "/locks";
 
     /**
-     * 当前应用编号命名空间
+     * 当前worker列表
      */
-    public static final String WORKER_ID = "/workerId";
-
-
+    public static final String WORKERS = "/workers";
 }
