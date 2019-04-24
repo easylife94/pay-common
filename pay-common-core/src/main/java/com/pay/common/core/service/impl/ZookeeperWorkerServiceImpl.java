@@ -1,6 +1,7 @@
 package com.pay.common.core.service.impl;
 
 import com.pay.common.client.constants.ZookeeperCommonNamespace;
+import com.pay.common.client.dto.WorkerPageDTO;
 import com.pay.common.client.exception.PayException;
 import com.pay.common.core.service.IWorkerService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,5 +115,20 @@ public class ZookeeperWorkerServiceImpl implements IWorkerService {
     @Override
     public Integer workerId() {
         return workerId;
+    }
+
+    @Override
+    public WorkerPageDTO workerPage(Long total) {
+        WorkerPageDTO page = new WorkerPageDTO();
+        Integer count = count();
+        Long start = 0L;
+        Long pageSize = total / count;
+        if (total % count != 0) {
+            pageSize++;
+        }
+        start = (pageSize * workerId) + pageSize;
+        page.setPageSize(pageSize);
+        page.setStart(start);
+        return page;
     }
 }
