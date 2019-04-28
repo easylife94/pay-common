@@ -29,4 +29,11 @@ public interface IIdService {
      * @param workerId
      */
     void setWorkerId(Integer workerId);
+
+    /**
+     * 获取workerId
+     *
+     * @return workerId
+     */
+    Long getWorkerId();
 }
