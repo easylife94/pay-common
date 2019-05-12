@@ -11,6 +11,11 @@ public enum CheckStatusEnum {
     WAIT,
 
     /**
+     * 结算中
+     */
+    CHECKING,
+
+    /**
      * 已结算
      */
     CHECKED,
